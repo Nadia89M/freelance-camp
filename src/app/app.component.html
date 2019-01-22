@@ -1,6 +1,55 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center"><h1>Navigation</h1></div>
-<a routerLink="/home">Home</a> <a routerLink="/documents">Docs</a>
-<a routerLink="/proposals">Proposals</a>
-<a routerLink="proposals/new">New Proposal</a>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-light bg-faded nav-styles">
+  <a class="nav-link" routerLink="/home">Freelance Camp</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="toggleNavbar = !toggleNavbar"
+  >
+    <span class="navbar-toggler-icon"> <i class="fa fa-bars"></i> </span>
+  </button>
+  <div class="collapse navbar-collapse" [ngbCollapse]="!toggleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/home"
+          routerLinkActive="active"
+          routerLinkActive="active"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/documents" routerLinkActive="active"
+          >Docs</a
+        >
+      </li>
+      <li ngbDropdown class="nav-item">
+        <button
+          class="btn btn-outline-primary"
+          id="navbarDropdownMenuLink"
+          ngbDropdownToggle
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Proposals
+        </button>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a
+            class="dropdown-item"
+            routerLink="/proposals"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Proposals</a
+          >
+          <a
+            class="dropdown-item"
+            routerLink="/proposals/new"
+            routerLinkActive="active"
+            >New Proposal</a
+          >
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="app-body"><router-outlet></router-outlet></div>
