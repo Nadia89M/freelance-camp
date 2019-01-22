@@ -1,38 +1,22 @@
 import { Component, OnInit } from "@angular/core";
+import { DocumentService } from "../services/document.service";
 import { Document } from "./document";
 
 @Component({
-  selector: "app-documents",
-  templateUrl: "./documents.component.html",
-  styleUrls: ["./documents.component.scss"]
+  selector: "documents",
+  templateUrl: "documents.component.html",
+  styleUrls: ["documents.component.scss"],
+  providers: [DocumentService]
 })
-export class DocumentsComponent {
+export class DocumentsComponent implements OnInit {
   pageTitle: string = "Document Dashboard";
+  documents: Object;
 
-  documents: Document[] = [
-    {
-      title: "My First Doc",
-      description: "asdfasdfasdf asdfasd",
-      file_url: "http://google.com",
-      updated_at: "11/11/16",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/d/d5/Mistakes-to-avoid-when-hiring-freelancers.jpg"
-    },
-    {
-      title: "My Second Doc",
-      description: "asdfasdfasdf asdfasd",
-      file_url: "http://google.com",
-      updated_at: "11/11/16",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/d/d5/Mistakes-to-avoid-when-hiring-freelancers.jpg"
-    },
-    {
-      title: "My Last Doc",
-      description: "asdfasdfasdf asdfasd",
-      file_url: "http://google.com",
-      updated_at: "11/11/16",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/d/d5/Mistakes-to-avoid-when-hiring-freelancers.jpg"
-    }
-  ];
+  constructor(private docService: DocumentService) {}
+
+  ngOnInit() {
+    this.docService
+      .getDoc()
+      .subscribe(documents => (this.documents = documents));
+  }
 }

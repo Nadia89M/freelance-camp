@@ -12,6 +12,12 @@
     <div class="card-block">
       <h4 class="card-title">{{ doc.title }}</h4>
 
+      <p class="card-text">
+        <small class="text-muted"
+          >Last updated: {{ doc.updated_at | date }}
+        </small>
+      </p>
+
       <p class="card-text">{{ doc.description }}</p>
 
       <div>
@@ -19,10 +25,6 @@
           >Download File</a
         >
       </div>
-
-      <p class="card-text">
-        <small class="text-muted">{{ doc.updated_at }}</small>
-      </p>
     </div>
   </div>
 </div>
