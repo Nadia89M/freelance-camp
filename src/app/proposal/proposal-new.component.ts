@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ProposalService } from "../services/proposal.service";
 import { Proposal } from "./proposal";
 
 @Component({
@@ -7,5 +8,18 @@ import { Proposal } from "./proposal";
   styleUrls: ["./proposal-new.component.scss"]
 })
 export class ProposalNewComponent {
-  proposal = new Proposal();
+  proposal = new Proposal;
+  submitted: boolean = false;
+  constructor(
+		private proposalService: ProposalService
+	) {}
+
+	createProposal(proposal) {
+		this.submitted = true;
+		this.proposalService.createProposal(proposal)
+				.subscribe(
+					data => { return true },
+				);
+	}
 }
+

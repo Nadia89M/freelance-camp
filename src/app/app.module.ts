@@ -13,6 +13,7 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { ProposalListComponent } from "./proposal/proposal-list.component";
 import { ProposalNewComponent } from "./proposal/proposal-new.component";
 import { ProposalShowComponent } from "./proposal/proposal-show.component";
+import { ProposalService } from "./services/proposal.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ProposalShowComponent } from "./proposal/proposal-show.component";
     NgbCollapseModule,
     HttpClientModule
   ],
-  providers: [DocumentService],
+  providers: [DocumentService, ProposalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

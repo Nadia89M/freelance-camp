@@ -1,46 +1,30 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { ProposalService } from "../services/proposal.service";
 import { Proposal } from "./proposal";
 
 @Component({
   selector: "app-proposal-list",
   templateUrl: "./proposal-list.component.html",
-  styleUrls: ["./proposal-list.component.scss"]
+  styleUrls: ["./proposal-list.component.scss"],
+  providers: [ProposalService]
 })
-export class ProposalListComponent {
-  proposalOne: Proposal = new Proposal(
-    15,
-    "Abc Company",
-    "http://portfolio.jordanhudgens.com",
-    "Ruby on Rails",
-    150,
-    120,
-    15,
-    "jordan@devcamp.com"
-  );
-  proposalTwo: Proposal = new Proposal(
-    99,
-    "XYZ Company",
-    "http://portfolio.jordanhudgens.com",
-    "Ruby on Rails",
-    150,
-    120,
-    15,
-    "jordan@devcamp.com"
-  );
-  proposalThree: Proposal = new Proposal(
-    300,
-    "Something Company",
-    "http://portfolio.jordanhudgens.com",
-    "Ruby on Rails",
-    150,
-    120,
-    15,
-    "jordan@devcamp.com"
-  );
+export class ProposalListComponent implements OnInit {
+  proposals: Object;
 
-  proposals: Proposal[] = [
-    this.proposalOne,
-    this.proposalTwo,
-    this.proposalThree
-  ];
+  constructor(private proposalService: ProposalService, private router: Router) {}
+
+  ngOnInit() {
+    this.proposalService
+      .getProposals()
+      .subscribe(proposals => (this.proposals = proposals));
+  }
+
+  goToShow(proposal: Proposal): void {
+		let link = ['/proposal', proposal.id];
+		this.router.navigate(link);
+	}
+
 }
+
+
