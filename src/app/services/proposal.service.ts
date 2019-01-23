@@ -9,7 +9,7 @@ export class ProposalService {
 
   constructor(private http: HttpClient) {}
 
-  private proposalsUrl = 'http://localhost:3002/proposals';
+  private proposalsUrl = 'https://freelance-camp-proposals.herokuapp.com/proposals';
 
   getProposals() {
     return this.http.get(this.proposalsUrl);

@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class DocumentService {
   constructor(private http: HttpClient) {}
 
-  docUrl = "http://localhost:3001/freelance_documents";
+  docUrl = "https://freelance-camp-documents.herokuapp.com/freelance_documents";
 
   getDoc() {
     return this.http.get(this.docUrl);
