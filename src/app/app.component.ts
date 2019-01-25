@@ -6,6 +6,6 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  toggleNavbar = true;
+  toggleNavbar = false;
   title = "freelance-camp-fe";
 }
